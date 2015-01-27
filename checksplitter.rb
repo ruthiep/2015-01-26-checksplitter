@@ -8,9 +8,15 @@ class Checksplitter
   
   def calc_tip 
    puts "do you want to change the tip amount? Y/N"
-   answer = gets.chomp
+   answer = gets.chomp.upcase
    if answer == "Y"
-     @tip = 1 + gets.chomp.to_i
+     puts "what amount would you like?"
+     @tip = gets.chomp.to_f
+     if @tip <= 0 
+       @tip = 1
+     else @tip += 1
+     end
+     puts "the tip percentage is #{@tip}"
    end
  end
      
