@@ -39,7 +39,6 @@ class Checksplitter
    
   def amount_due
     amt_due = total_bill / set_party
-    amt_due.to_s
   end
     
  
@@ -52,15 +51,25 @@ class DinnerClub
     @diners = {Bob: 20, Joan: 25, Ruthie: 20}
     
   end
-
-  today = Checksplitter.new
   
-  puts "you each owe $" + today.amount_due    
+  def update_balance
+    today = Checksplitter.new
+    today.amount_due
+  end
+  
+  def add_to_total
+    add_amt = update_balance
+    @diners.each do |name, amount|
+      @diners[name] += add_amt
+    end
+     puts @diners 
+  end
   
 end
 
 test = DinnerClub.new
 
+test.add_to_total
 
   
   
