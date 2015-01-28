@@ -46,9 +46,9 @@ class Checksplitter
 end
   
   
-  test = Checksplitter.new
+  #test = Checksplitter.new
   
-  test.pay_amount
+  #test.pay_amount
   
   
   
