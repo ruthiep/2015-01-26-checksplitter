@@ -27,7 +27,7 @@ class Checksplitter
      
    def set_bill
      puts "how much was the bill"
-     @total = gets.chomp.to_i
+     @total = gets.chomp.to_f
    end
 
   def amount_due
