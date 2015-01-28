@@ -36,6 +36,7 @@ class Checksplitter
    
    def total_bill
      calc_tip * set_bill 
+     puts 1
    end
    
    def set_party
@@ -43,6 +44,7 @@ class Checksplitter
    end
   
    def amount_due
+     puts "\n 2"
      total_bill / set_party
    end
   
@@ -74,6 +76,7 @@ class DinnerClub
     @diners = []
     @balance_sheet = {}
     @club_history = []
+    
     
   end
   
@@ -108,14 +111,14 @@ class DinnerClub
     puts "which restaurant?"
     restaurant = gets.chomp
     add_diners
-    @club_history << restaurant << @diners
+    @club_history  << restaurant << @diners
     puts @club_history
   end
   
   # def format_history
     # puts "-" * 20
-  #   @club_history
-  #   puts "-" * 20
+    # @club_history.each          
+  # puts "-" * 20
   # end
   
   def check_if_splitting
@@ -154,10 +157,10 @@ end
 test = DinnerClub.new
 
 test.update_history
-#test.check_if_splitting
-#test.add_to_total
+test.check_if_splitting
+test.add_to_total
 
-test.update_history
+#test.update_history
 #test.check_if_splitting
 #test.add_to_total
   
