@@ -1,4 +1,4 @@
-"require pry"
+require "pry"
 
 #Class: Checksplitter
 #
@@ -19,31 +19,30 @@
 
 class Checksplitter
 
-  def initialize (num_in_party)
-    @party = num_in_party
-    @total = 0.0
-    @tip = 1.2
+  def initialize (total, tip, party_size) 
+    
+    #attr_accessor (:@total, :@party_size)
+    
+   @total = total
+   @tip = (tip * 0.01) + 1
+   @party_size = party_size
   end
   
-  def calc_tip 
+  def tip 
+     if @tip <= 0 
+       @tip = 1
+     else @tip += 1
+     end
    @tip
  end
-     
-   def set_bill
-     puts "how much was the bill"
-     @total = gets.chomp.to_f
-     return @total
-   end
    
    def total_bill
-     calc_tip * set_bill 
+     @tip * @total
    end
-   
   
    def amount_due
-     total_bill / @party
+     total_bill / @party_size
    end
-  
     
 end
 
@@ -130,54 +129,49 @@ class DinnerClub
     return dinner.get_length
   end
   
-  # def format_history
-    # puts "-" * 20
-    # @club_history.each          
-  # puts "-" * 20
-  # end
-  
-  # def check_if_splitting
- #    puts "Is everyone paying today?"
- #    answer = gets.chomp.upcase
- #    if answer == "Y"
- #      calc_portion_of_bill
- #    else
- #      treats
- #    end
- #  end
- #
+  def check_if_splitting
+    puts "Is everyone paying today?"
+    answer = gets.chomp.upcase
+    if answer == "Y"
+      calc_portion_of_bill
+      #else
+      #treats
+    end
+  end
+
   def calc_portion_of_bill
-      @num_in_party = update_history
-      puts "num_in_party = #{@num_in_party}"  
-      today = Checksplitter.new(@num_in_party)
+      @party = update_history
+      puts "num_in_party = #{@party}"  
+      today = Checksplitter.new(50, 20, @party)
       puts "we each owe #{today.amount_due}"
   
   end
- #
- #  def treats
- #      puts "Who's treating?"
- #      answer = gets.chomp
- #      @balance_sheet[answer] += total_bill
- #  end
- #
-  def add_to_total
-    add_amt = calc_portion_of_bill
-    count = 0
-    while count < @num_in_party
-    @balance_sheet[dinner[count]] = sprintf("%.02f", add_amt)
-    count += 1
-    end
-     puts @balance_sheet
+ 
+  def treats
+      puts "Who's treating?"
+      answer = gets.chomp
+      
+      #@balance_sheet[answer] += total_bill
   end
+
+  # def add_to_total
+#     add_amt = calc_portion_of_bill
+#     count = 0
+#     while count < @num_in_party
+#     @balance_sheet[dinner[count]] = sprintf("%.02f", add_amt)
+#     count += 1
+#     end
+#      puts @balance_sheet
+#   end
   
 end
 
 test = DinnerClub.new
 
 #test.update_history
-test.add_to_total
+#test.add_to_total
 
-#test.check_if_splitting
+test.check_if_splitting
 #test.calc_portion_of_bill
 #test.update_history
 #test.check_if_splitting
