@@ -41,7 +41,6 @@ class Checksplitter
    
   
    def amount_due
-     puts "\n 2"
      total_bill / @party
    end
   
@@ -148,10 +147,10 @@ class DinnerClub
  #  end
  #
   def calc_portion_of_bill
-      num_in_party = update_history
-      puts num_in_party  
-      today = Checksplitter.new(num_in_party)
-      puts today.amount_due
+      @num_in_party = update_history
+      puts "num_in_party = #{@num_in_party}"  
+      today = Checksplitter.new(@num_in_party)
+      puts "we each owe #{today.amount_due}"
   
   end
  #
@@ -161,25 +160,25 @@ class DinnerClub
  #      @balance_sheet[answer] += total_bill
  #  end
  #
- #  def add_to_total
- #    add_amt = calc_portion_of_bill
- #    count = 0
- #    while count < @diners.length
- #    @balance_sheet[@diners[count]] = sprintf("%.02f", add_amt)
- #    count += 1
- #    end
- #     puts @balance_sheet
- #  end
+  def add_to_total
+    add_amt = calc_portion_of_bill
+    count = 0
+    while count < @num_in_party
+    @balance_sheet[dinner[count]] = sprintf("%.02f", add_amt)
+    count += 1
+    end
+     puts @balance_sheet
+  end
   
 end
 
 test = DinnerClub.new
 
 #test.update_history
-test.calc_portion_of_bill
-#test.check_if_splitting
-#test.add_to_total
+test.add_to_total
 
+#test.check_if_splitting
+#test.calc_portion_of_bill
 #test.update_history
 #test.check_if_splitting
 #test.add_to_total
