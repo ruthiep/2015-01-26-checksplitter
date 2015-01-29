@@ -190,6 +190,7 @@ class DinnerClub
         t.spend( total )
         puts @members
         
+        add_event( restaurant, treater )
         add_event( restaurant, *member )
   end
 
