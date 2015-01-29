@@ -1,21 +1,14 @@
-# Class: DinnerClub
+# Class: Person
 #
-# Tracks who attended each dinner and their running balance.
+# Creates a new person object for the Dinnerclub @members hash..
 #
 # Attributes:
-# @diners          - Array: the names of the people who attended that dinner.
-# @balance_sheet   - Hash: the names and how much they owe for that dinner. 
-# @club_history    - Array: the history of each person's balance.
+# name             - String: the name of the person obj.
+# spending_amount  - Integer: the running total of their dinner club events. 
 #
 # Public Methods:
-# #add_diners
-# #update_history
-# #format_history
-# #check_if_splitting
-# #calc_portion_of_bill
-# #treats
-# #add_to_total
-
+# #spend
+# 
 
 
 class Person
@@ -29,19 +22,18 @@ class Person
     
   end
   
-  # Public: #add_diners
-  # Adds the diners to the array.
+  # Public: #spend
+  # Adds the amt of a dinner to the running total in their history.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # amt      - Integer: amount of dinner calculated from CheckSplitter.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @spending_amount  : The new balance.
   #
   # State changes:
-  # adds to @diners
+  # @spending_amount
    
   def spend( amt )
     @spending_amount += amt
