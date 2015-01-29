@@ -36,12 +36,13 @@ class Checksplitter
    @tip
  end
    
-   def total_bill
-     @tip * @total
-   end
+   # def total_bill
+#      @tip * @total
+#    end
   
    def amount_due
-     total_bill / @party_size
+     temp_total = (total_bill * tip) / @party_size
+     temp_total.ceil.to_i
    end
     
 end

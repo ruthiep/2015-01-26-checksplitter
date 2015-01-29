@@ -1,22 +1,22 @@
 
-class Checksplitter
+class Checksplitter_new
 
   def initialize (total, tip, party_size) 
     
-    attr_accessor (:@total, :@party_size)
+#    attr_accessor (:@total, :@party_size)
     
-   # @total = total
-    @tip = tip * .01
-   # @party_size = party_size
+   @total = total
+   @tip = tip * 0.01 + 1
+   @party_size = party_size
   end
   
-  def tip 
-     if @tip <= 0 
-       @tip = 1
-     else @tip += 1
-     end
-   @tip
- end
+  # def tip
+#      if @tip <= 0
+#        @tip = 1
+#      else @tip += 1
+#      end
+#    @tip
+#  end
      
    # def set_party
 #      puts "how many in your party"
@@ -43,9 +43,9 @@ class Checksplitter
 end
   
   
-  #test = Checksplitter.new
+  test = Checksplitter_new.new (50, 20, 5)
   
-  #test.pay_amount
+  test.pay_amount
   
   
   
