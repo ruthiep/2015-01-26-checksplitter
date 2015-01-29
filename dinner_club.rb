@@ -12,10 +12,11 @@ require_relative 'person'
 
 class DinnerClub
   
-  attr_reader :members
+  attr_reader :members, :events
 
   def initialize
     @members = {}
+    @events = {}
   end
 
 
@@ -36,7 +37,7 @@ class DinnerClub
     @members
   end
   
-  def have_an_outing ( total, tip, *diners )
+  def have_an_outing( total, tip, *diners )
     cs = CheckSplitter.new( total, tip, diners.length )
     amount_per_person = cs.split_the_bill
   
@@ -56,6 +57,23 @@ class DinnerClub
   def get_spending_report( member )
     @members[member]
   end
+  
+  def add_event( restaurant, *member )
+    @events[restaurant] = *member
+    puts @events
+  end
+  
+  def treat (member, total)
+     # add_event( restaurant, *members ) 
+      #if @members.has_key( member )
+        t = @members[member]
+        t.spend( total )
+        #else
+        #add_member( member )
+        #t = @members( member )
+        #t.spend( total ) 
+  end
+
 end
 
 binding.pry
