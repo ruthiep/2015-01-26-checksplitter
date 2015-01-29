@@ -13,18 +13,18 @@ require_relative 'person'
 # Tracks who attended each dinner and their running balance.
 #
 # Attributes:
-# @diners          - Array: the names of the people who attended that dinner.
-# @balance_sheet   - Hash: the names and how much they owe for that dinner. 
-# @club_history    - Array: the history of each person's balance.
+# @member          - Hash: the names of the diners and their person object.
+# @events          - Hash: the name of the restaurant and who attended each event. 
 #
 # Public Methods:
-# #add_diners
-# #update_history
-# #format_history
-# #check_if_splitting
-# #calc_portion_of_bill
-# #treats
-# #add_to_total
+# #add_member
+# #show_members
+# #remove_member
+# #have_an_outing
+# #show_spending_report
+# #add_event
+# #treat
+# 
 
 class DinnerClub
   
@@ -35,38 +35,38 @@ class DinnerClub
     @events = {}
   end
 
-  # Public: #add_diners
-  # Adds the diners to the array.
+  # Public: #add_member
+  # Adds members to the hash.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # member     - String: name of key to be added.
+  # @members   - Hash:  creates a new Person obj to be the value for the member key.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @members.
   #
   # State changes:
-  # adds to @diners
+  # adds to @members
    
   def add_member( member )
     @members[member] = Person.new ( member )
     @members
   end
 
-  # Public: #add_diners
-  # Adds the diners to the array.
+  # Public: #show_members
+  # Displays the @members hash.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # member   - String: name of the member--hash key.
+  # objs     - Object:  the corresponding hash value.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @members: The completed hash.
   #
   # State changes:
-  # adds to @diners
+  # adds to @members
    
 
   def show_members
@@ -76,38 +76,40 @@ class DinnerClub
     @members
   end
   
-  # Public: #add_diners
-  # Adds the diners to the array.
+  # Public: #remove_member
+  # Removes a member from the @members hash.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # member    - String: name of individual member to remove.
+  # @members  - Hash:  the array to be populated.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @members: The completed hash.
   #
   # State changes:
-  # adds to @diners
+  # adds to @members
    
   
   def remove_member( member )
     @members.delete(member)
     @members
   end
-  # Public: #add_diners
-  # Adds the diners to the array.
+  
+  # Public: #have_an_outing
+  # Creates a new CheckSplitter obj so that the members who attended and their spending amount can be recorded.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # total     - String: name input from user.
+  # tip       - Float: the percent tip amount.
+  # *diners   - splat Array:  a list of members to add the spending amount to their person obj.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @members: The completed hash.
   #
   # State changes:
-  # adds to @diners
+  # adds to @members
    
   
   def have_an_outing( total, tip, *diners )
@@ -127,56 +129,57 @@ class DinnerClub
     @members
   end
   
-  # Public: #add_diners
-  # Adds the diners to the array.
+  # Public: #get_spending_report
+  # Gets the hash of members and their current balances.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # member   - String: name of the key for the @members hash.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @members: The completed array.
   #
   # State changes:
-  # adds to @diners
+  # adds to @members
    
   def get_spending_report( member )
     @members[member]
   end
   
-  # Public: #add_diners
-  # Adds the diners to the array.
+  # Public: #add_event
+  # Adds a new outing to the @events hash.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # restaurant   - String: name of the restaurant where they ate on that event.
+  # *members     - splat Array:  a list of the members who attended that event.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # @events: The completed hash.
   #
   # State changes:
-  # adds to @diners
+  # adds to @events
    
   
   def add_event( restaurant, *member )
     @events[restaurant] = *member
     puts @events
   end
-  # Public: #add_diners
-  # Adds the diners to the array.
+  
+  
+  # Public: #treat
+  # Allows one member to pay the total bill.
   #
   # Parameters:
-  # answer   - String: name input from user.
-  # @diners  - Array:  the array to be populated.
+  # member   - String: name of person who is paying.
+  # total    - Integer:  the amount of the total bill for an event.
   #
   #
   # Returns:
-  # @diners: The completed array.
+  # t.spend (total) :  The new balance for that member's spending.
   #
   # State changes:
-  # adds to @diners
+  # increases spend by total.
    
   
   def treat (member, total)
