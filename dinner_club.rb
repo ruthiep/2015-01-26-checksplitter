@@ -171,26 +171,26 @@ class DinnerClub
   # Allows one member to pay the total bill.
   #
   # Parameters:
-  # member   - String: name of person who is paying.
-  # total    - Integer:  the amount of the total bill for an event.
-  #
+  # treater     - String: name of person who is paying.
+  # total       - Integer:  the amount of the total bill for an event.
+  # restaurant  - String: the location of the outing.
+  # *member     - Array:  list of all the other members who went, but didn't have to pay.
   #
   # Returns:
-  # t.spend (total) :  The new balance for that member's spending.
+  # @members :  The updated @members hash.
   #
   # State changes:
-  # increases spend by total.
+  # @members: the treater's spending total is increased by total amount.
+  # @events:  all the members who went are recorded for the event.
    
   
-  def treat (member, total)
-     # add_event( restaurant, *members ) 
-      #if @members.has_key( member )
-        t = @members[member]
+  def treat (treater, total, restaurant, *member)
+     
+        t = @members[treater] 
         t.spend( total )
-        #else
-        #add_member( member )
-        #t = @members( member )
-        #t.spend( total ) 
+        puts @members
+        
+        add_event( restaurant, *member )
   end
 
 end
